@@ -28,10 +28,24 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var _question = [
-      "What's your favorite color",
-      "What's your favorite places",
-      "What's your goal",
+    List _question = [
+      {
+        "questionText": "What's your favorite color",
+        "answer": ["Green", "Blue", "Red", "Other"]
+      },
+      {
+        "questionText": "What's your favorite places",
+        "answer": [
+          "Indian Pilgrimages",
+          "Forest",
+          " Your Home",
+          "Crowdy Places"
+        ]
+      },
+      {
+        "questionText": "What's your life's goal",
+        "answer": ["Money", "Love", "To Help Others", "other"]
+      },
     ];
     return MaterialApp(
       title: 'Flutter Demo',
@@ -43,10 +57,10 @@ class _MyAppState extends State<MyApp> {
         body: Column(
             // ignore: prefer_const_literals_to_create_immutables
             children: [
-              Question(_question[_index]),
-              Answer(_pressed),
-              Answer(_pressed),
-              Answer(_pressed),
+              Question(_question[_index]["questionText"]),
+              ...(_question[_index]["answer"] as List<String>).map((answer) {
+                return Answer(_pressed, answer);
+              }).toList()
             ]),
       ),
     );
