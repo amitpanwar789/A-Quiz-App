@@ -1,8 +1,8 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import './question.dart';
-import './answer.dart';
+import './quiz.dart';
+import './result.dart';
 
 void main() {
   runApp(MyApp());
@@ -54,14 +54,9 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text("Welcome to the quiz"),
         ),
-        body: Column(
-            // ignore: prefer_const_literals_to_create_immutables
-            children: [
-              Question(_question[_index]["questionText"]),
-              ...(_question[_index]["answer"] as List<String>).map((answer) {
-                return Answer(_pressed, answer);
-              }).toList()
-            ]),
+        body:(_index < _question.length)? 
+          Quiz(_question, _index, _pressed):
+          Result() ,
       ),
     );
   }
