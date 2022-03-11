@@ -19,9 +19,18 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _index = 0;
-  void _pressed() {
+  var _score = 0;
+  void _pressed(int val) {
+    _score += val;
+    
     setState(() {
       _index += 1;
+    });
+  }
+  void Reset(){
+    setState(() {
+    _index = 0;
+    _score = 0;      
     });
   }
 
@@ -31,20 +40,30 @@ class _MyAppState extends State<MyApp> {
     List _question = [
       {
         "questionText": "What's your favorite color",
-        "answer": ["Green", "Blue", "Red", "Other"]
+        "answer": [
+          {'text': "Green", "score": 10},
+          {'text': "Blue", "score": 15},
+          {"text": "Red", "score": 5},
+          {"text": "Other", "score": 2}
+        ]
       },
       {
         "questionText": "What's your favorite places",
         "answer": [
-          "Indian Pilgrimages",
-          "Forest",
-          " Your Home",
-          "Crowdy Places"
+          {"text": "Indian Pilgrimages", "score": 20},
+          {'text': "Forest", "score": 15},
+          {'text': " Your Home", "score": 10},
+          {'text': "Crowdy Places", "score": 5}
         ]
       },
       {
         "questionText": "What's your life's goal",
-        "answer": ["Money", "Love", "To Help Others", "other"]
+        "answer": [
+          {"text": "Money", "score": 5},
+          {"text": "Love", "score": 8},
+          {"text": "To Help Others", "score": 20},
+          {"text": "other", "score": 15}
+        ]
       },
     ];
     return MaterialApp(
@@ -54,9 +73,9 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text("Welcome to the quiz"),
         ),
-        body:(_index < _question.length)? 
-          Quiz(_question, _index, _pressed):
-          Result() ,
+        body: (_index < _question.length)
+            ? Quiz(_question, _index, _pressed)
+            : Result(_score , Reset),
       ),
     );
   }

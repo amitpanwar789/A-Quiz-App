@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class Question extends StatelessWidget {
@@ -16,7 +18,6 @@ class Question extends StatelessWidget {
           fontSize: 28,
         ),
         textAlign: TextAlign.center,
-      ),
-    );
+      ),);
   }
 }
