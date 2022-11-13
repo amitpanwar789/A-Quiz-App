@@ -1,6 +1,5 @@
 # my_app
 
-My first flutter project
 A Quiz app
 
 ## Getting Started
